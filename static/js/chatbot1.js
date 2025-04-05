@@ -1,5 +1,6 @@
   // chat-area에서 bot_id와 bot_image_url 정보 꺼내기
     const chatArea = document.querySelector('.chat-area');
+    const botId = chatArea.dataset.botId;
     const botImageUrl = chatArea.dataset.botImageUrl;
   
     // 주요 DOM 요소

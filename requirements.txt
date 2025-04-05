@@ -2,6 +2,3 @@ flask
 openai
 python-dotenv
 numpy
-
-##추가 패키지 작성
-

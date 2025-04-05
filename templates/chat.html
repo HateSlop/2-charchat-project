@@ -244,6 +244,7 @@
   </div>
   
   <!-- Video Modal -->
+  {% if bot_id == 1 %}
   <div id="videoModal" class="modal">
     <div class="modal-content">
       <button class="modal-close" data-close-modal="videoModal">&times;</button>
@@ -254,8 +255,40 @@
       </video>
     </div>
   </div>
+  {% elif bot_id == 2 %}
+  <div id="videoModal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" data-close-modal="videoModal">&times;</button>
+      <h2>영상 보기</h2>
+      <video controls style="width:100%; border-radius:8px; margin-top: 20px;">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+  {% elif bot_id == 3 %}
+  <div id="videoModal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" data-close-modal="videoModal">&times;</button>
+      <h2>영상 보기</h2>
+      <video controls style="width:100%; border-radius:8px; margin-top: 20px;">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+  {% elif bot_id == 4 %}
+  <div id="videoModal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" data-close-modal="videoModal">&times;</button>
+      <h2>영상 보기</h2>
+      <video controls style="width:100%; border-radius:8px; margin-top: 20px;">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+  {% endif %}
   
   <!-- Image Gallery Modal -->
+  {% if bot_id == 1 %}
   <div id="imageModal" class="modal">
     <div class="modal-content">
       <button class="modal-close" data-close-modal="imageModal">&times;</button>
@@ -274,28 +307,67 @@
       </div>
     </div>
   </div>
+  {% elif bot_id == 2 %}
+  <div id="imageModal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" data-close-modal="imageModal">&times;</button>
+      <h2>그림 보기</h2>
+      <div class="image-grid">
+        <!-- chatbot2의 이미지들 -->
+      </div>
+    </div>
+  </div>
+  {% elif bot_id == 3 %}
+  <div id="imageModal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" data-close-modal="imageModal">&times;</button>
+      <h2>그림 보기</h2>
+      <div class="image-grid">
+        <!-- chatbot3의 이미지들 -->
+      </div>
+    </div>
+  </div>
+  {% elif bot_id == 4 %}
+  <div id="imageModal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" data-close-modal="imageModal">&times;</button>
+      <h2>그림 보기</h2>
+      <div class="image-grid">
+        <img src="{{ url_for('static', filename='images/chatbot4/photo1.png') }}" alt="Photo 1">
+        <img src="{{ url_for('static', filename='images/chatbot4/photo2.png') }}" alt="Photo 2">
+        <img src="{{ url_for('static', filename='images/chatbot4/photo3.png') }}" alt="Photo 3">
+        <img src="{{ url_for('static', filename='images/chatbot4/photo4.png') }}" alt="Photo 4">
+      </div>
+    </div>
+  </div>
+  {% endif %}
 
   <script>
-    // URL 파라미터 읽기
-    const urlParams = new URLSearchParams(window.location.search);
-    const botId = urlParams.get('bot_id') || '1';
-
-    // 로드할 JS 파일 결정
-    let jsFileName = 'chatbot_default.js';
-    if (botId === '1') {
-      jsFileName = 'chatbot1.js';
-    } else if (botId === '2') {
-      jsFileName = 'chatbot2.js';
-    } else if (botId === '3') {
-      jsFileName = 'chatbot3.js';
-    } else if (botId === '4') {
-      jsFileName = 'chatbot4.js';
+    // JS 파일이 한 번만 로드되도록 확인
+    if (!window.chatbotScriptLoaded) {
+      window.chatbotScriptLoaded = true;
+      
+      // HTML 데이터 속성에서 bot_id 읽기
+      const chatArea = document.querySelector('.chat-area');
+      const botId = chatArea.dataset.botId || '1';
+  
+      // 로드할 JS 파일 결정
+      let jsFileName = 'chatbot_default.js';
+      if (botId === '1') {
+        jsFileName = 'chatbot1.js';
+      } else if (botId === '2') {
+        jsFileName = 'chatbot2.js';
+      } else if (botId === '3') {
+        jsFileName = 'chatbot3.js';
+      } else if (botId === '4') {
+        jsFileName = 'chatbot4.js';
+      }
+  
+      // <script> 태그 동적으로 생성
+      const scriptTag = document.createElement('script');
+      scriptTag.src = `/static/js/${jsFileName}`;
+      document.body.appendChild(scriptTag);
     }
-
-    // <script> 태그 동적으로 생성
-    const scriptTag = document.createElement('script');
-    scriptTag.src = `/static/js/${jsFileName}`;
-    document.body.appendChild(scriptTag);
   </script>
 </body>
 </html>

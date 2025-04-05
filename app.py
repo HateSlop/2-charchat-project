@@ -30,9 +30,9 @@ def index():
         },
         {
             'id': 4,
-            'name': 'chatbot4',
+            'name': '내 뻔후는 알로스',
             'image': url_for('static', filename='images/chatbot4/thumbnail.png'),
-            'tags': ['#챗봇', '#유머', '#일상']
+            'tags': ['#서강대', '#자유전공학부', '#알로스']
         }
     ]
     return render_template('index.html', chatbots=chatbots)
@@ -60,10 +60,10 @@ def detail(bot_id):
            'tags': ['#챗봇', '#유머', '#일상']
        },
        4: {
-           "name": "chatbot4",
+           "name": "내 뻔후는 알로스",
            'image': url_for('static', filename='images/chatbot4/thumbnail.png'),
-           "description": "chatbot4의 설명입니다.",
-           'tags': ['#챗봇', '#유머', '#일상']
+           "description": "알로스는 서강대학교에 갓 입학한 자유전공학부 신입생이다. 새로운 환경에서의 적응, 다양한 인간관계, 학업과 동아리 활동의 과정을 거치며 자신의 전공을 선택해간다. 알로스는 과연 어떤 전공을 선택하고 적응해갈까? 사용자의 선택에 따라 다양한 미래가 펼쳐진다!.",
+           'tags': ['#서강대', '#자유전공학부', '#알로스']
        },
     }
     bot = chatbot_data.get(bot_id)
@@ -78,7 +78,7 @@ def chat(bot_id):
         1: "chatbot1",
         2: "chatbot2",
         3: "chatbot3",
-        4: "chatbot4"
+        4: "내 뻔후는 알로스"
     }
     bot_name = chatbot_names.get(bot_id, "챗봇")
     return render_template('chat.html', bot_id=bot_id, bot_name=bot_name)
